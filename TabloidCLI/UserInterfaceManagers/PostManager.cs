@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using TabloidCLI.Models;
+using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
@@ -11,9 +12,9 @@ namespace TabloidCLI.UserInterfaceManagers
     {
         private readonly IUserInterfaceManager _parentUI;
         private PostRepository _postRepository;
-        //needed author and blog repository
-        private AuthorRepository _authorRepository;
         private BlogRepository _blogRepository;
+        //needed author and blog repository
+        private AuthorRepository _authorRepository;        
         private string _connectionString;
 
         public PostManager(IUserInterfaceManager parentUI, string connectionString)
@@ -61,7 +62,9 @@ namespace TabloidCLI.UserInterfaceManagers
                     }
                     else
                     {
-                        return new PostDetailManager(this, _connectionString, post.Id);
+                        //return new PostDetailManager(this, _connectionString, post.Id);
+                       throw new NotImplementedException();
+
                     }
                 //case "6":
                 //    return new NoteManagementManager(this, _connectionString);
@@ -153,7 +156,7 @@ namespace TabloidCLI.UserInterfaceManagers
             }
             Console.Write("> ");
 
-            int choice = int.Parse(Console.ReadLine());
+            choice = int.Parse(Console.ReadLine());
             Blog blog = blogs[choice - 1];
 
             post.Blog = blog;

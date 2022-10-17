@@ -41,7 +41,7 @@ namespace TabloidCLI
                             },
                             Blog = new Blog()
                             {
-                              Id = reader.GetInt32 reader.GetOrdinal("BlogId")),
+                              Id = reader.GetInt32 (reader.GetOrdinal("BlogId"))
                            }
                         };
                         posts.Add(post);
