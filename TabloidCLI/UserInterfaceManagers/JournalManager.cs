@@ -36,6 +36,7 @@ namespace TabloidCLI.UserInterfaceManagers
             switch (choice)
             {
                 case "1":
+                    //runs list method, returns to Journal menu
                     List();
                     return this;
                 case "2":
@@ -76,6 +77,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
+            //Grabs List of all journals in database, foreach to display needed info
             List<Journal> journals = _journalRepository.GetAll();
             foreach (Journal journal in journals)
             {
