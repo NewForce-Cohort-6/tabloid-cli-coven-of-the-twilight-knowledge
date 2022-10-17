@@ -17,7 +17,7 @@ namespace TabloidCLI.Repositories
                 {
                     cmd.CommandText = @"SELECT Id,
                                            Title,
-                                           Url,
+                                           Url
                                       FROM Blog";
 
                     List<Blog> blogs = new List<Blog>();
