@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TabloidCLI.Models;
+using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
     public class JournalManager : IUserInterfaceManager
     {
         private readonly IUserInterfaceManager _parentUI;
-        //Uncomment when JournalRespository is set up
-        //private JournalRepository _journalRepository;
+        private JournalRepository _journalRepository;
         private string _connectionString;
 
         public JournalManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
-            //Same as above. Uncomment when implemented
-            //_journalRepository = new JournalRepository(connectionString);
+            _journalRepository = new JournalRepository(connectionString);
             _connectionString = connectionString;
         }
 
@@ -40,8 +40,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     Console.WriteLine();
                     return this;
                 case "2":
-                    Console.WriteLine("To be implented soon");
-                    Console.WriteLine();
+                    Add();
                     return this;
                 case "3":
                     Console.WriteLine("To be implented soon");
@@ -62,7 +61,18 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
+            Console.WriteLine("New Journal");
+            Journal entry = new Journal();
 
+            Console.WriteLine("Title: ");
+            entry.Title = Console.ReadLine();
+
+            Console.WriteLine("Content: ");
+            entry.Content = Console.ReadLine();
+
+            
+
+            _journalRepository.Insert(entry);
         }
     }
 }
