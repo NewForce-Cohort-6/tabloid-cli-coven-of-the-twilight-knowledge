@@ -36,7 +36,7 @@ namespace TabloidCLI.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO Journal (Title, Content, CreateDateTime )
-                                                    VALUES (@title, @content, @createDateTime";
+                                                    VALUES (@title, @content, @createDateTime)";
                     cmd.Parameters.AddWithValue("@title", entry.Title);
                     cmd.Parameters.AddWithValue("@content", entry.Content);
                     cmd.Parameters.AddWithValue("@createDateTime", entry.CreateDateTime);
