@@ -13,7 +13,7 @@ namespace TabloidCLI.UserInterfaceManagers
         private PostRepository _postRepository;
         //needed author and blog repository
         private AuthorRepository _authorRepository;
-        //private BlogRepository _blogRepository;
+        private BlogRepository _blogRepository;
         private string _connectionString;
 
         public PostManager(IUserInterfaceManager parentUI, string connectionString)
@@ -21,7 +21,7 @@ namespace TabloidCLI.UserInterfaceManagers
             _parentUI = parentUI;
             _postRepository = new PostRepository(connectionString);
             _authorRepository = new AuthorRepository(connectionString);
-            //_blogRepository = new BlogRepository(connectionString);
+            _blogRepository = new BlogRepository(connectionString);
             _connectionString = connectionString;
         }
 
@@ -53,16 +53,16 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "4":
                     Remove();
                     return this;
-                //case "5":
-                //    Post post = Choose();
-                //    if (post == null)
-                //    {
-                //        return this;
-                //    }
-                //    else
-                //    {
-                //        return new PostDetailManager(this, _connectionString, post.Id);
-                //    }
+                case "5":
+                    Post post = Choose();
+                    if (post == null)
+                    {
+                        return this;
+                    }
+                    else
+                    {
+                        return new PostDetailManager(this, _connectionString, post.Id);
+                    }
                 //case "6":
                 //    return new NoteManagementManager(this, _connectionString);
                 case "0":
@@ -144,19 +144,19 @@ namespace TabloidCLI.UserInterfaceManagers
 
             //dont have a blog repository yet
 
-            //Console.WriteLine("Please Choose An Blog:");
-            //List<Blog> blogs = _blogRepository.GetAll();
+            Console.WriteLine("Please Choose An Blog:");
+            List<Blog> blogs = _blogRepository.GetAll();
 
-            //foreach (Blog b in blogs)
-            //{
-            //    Console.WriteLine($"{b.Id}) {b.Title}");
-            //}
-            //Console.Write("> ");
+            foreach (Blog b in blogs)
+            {
+                Console.WriteLine($"{b.Id}) {b.Title}");
+            }
+            Console.Write("> ");
 
-            //int choice = int.Parse(Console.ReadLine());
-            //Blog blog = blogs[choice - 1];
+            int choice = int.Parse(Console.ReadLine());
+            Blog blog = blogs[choice - 1];
 
-            //post.Blog = blog;
+            post.Blog = blog;
 
 
             _postRepository.Insert(post);
@@ -210,22 +210,22 @@ namespace TabloidCLI.UserInterfaceManagers
                 postToEdit.Author = author;
             }
 
-            //Console.Write("New blog (blank to leave unchanged): ");
-            //List<Blog> blogs = _blogRepository.GetAll();
-            //foreach (Blog b in blogs)
-            //{
-            //    Console.WriteLine($"{b.Id}) {b.Title}");
-            //}
-            //Console.Write("> ");
+            Console.Write("New blog (blank to leave unchanged): ");
+            List<Blog> blogs = _blogRepository.GetAll();
+            foreach (Blog b in blogs)
+            {
+                Console.WriteLine($"{b.Id}) {b.Title}");
+            }
+            Console.Write("> ");
 
-            //string blogChoice = Console.ReadLine();
+            string blogChoice = Console.ReadLine();
 
-            //if (!string.IsNullOrWhiteSpace(blogChoice))
-            //{
-            //    int bChoice = int.Parse(blogChoice);
-            //    Blog blog = blogs[bChoice - 1];
-            //    postToEdit.Blog = blog;
-            //}
+            if (!string.IsNullOrWhiteSpace(blogChoice))
+            {
+                int bChoice = int.Parse(blogChoice);
+                Blog blog = blogs[bChoice - 1];
+                postToEdit.Blog = blog;
+            }
 
             _postRepository.Update(postToEdit);
 
