@@ -63,14 +63,14 @@ namespace TabloidCLI
         conn.Open();
         using (SqlCommand cmd = conn.CreateCommand())
         {
-            cmd.CommandText = @"SELECT p.Id AS PstId,
+            cmd.CommandText = @"SELECT p.Id AS PostId,
                                                p.Title,
                                                p.Url,
                                                p.PublishDateTime,
                                                pt.TagId,
                                                t.Name
                                           FROM Post p 
-                                               LEFT JOIN PostTag at on p.Id = pt.PostId
+                                               LEFT JOIN PostTag pt on p.Id = pt.PostId
                                                LEFT JOIN Tag t on t.Id = pt.TagId
                                          WHERE p.id = @id";
 

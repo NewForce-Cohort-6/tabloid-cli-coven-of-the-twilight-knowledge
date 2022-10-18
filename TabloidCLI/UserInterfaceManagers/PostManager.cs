@@ -65,7 +65,7 @@ namespace TabloidCLI.UserInterfaceManagers
                         return new PostDetailManager(this, _connectionString, post.Id);
                     }
                 //case "6":
-                    //return new NoteManagementManager(this, _connectionString);
+                //    return new NoteManagementManager(this, _connectionString);
                 case "0":
                     return _parentUI;
                 default:
