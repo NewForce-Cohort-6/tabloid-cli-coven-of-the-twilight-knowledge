@@ -93,7 +93,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 return;
             }
             Console.WriteLine();
-            Console.Write("New ")
+            Console.Write("New ");
         }
 
         private Journal Choose(string prompt = null)
