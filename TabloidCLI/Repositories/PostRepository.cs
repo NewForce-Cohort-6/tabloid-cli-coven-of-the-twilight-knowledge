@@ -187,10 +187,9 @@ namespace TabloidCLI
                                                a.Bio,
                                                b.Title AS BlogTitle,
                                                b.URL AS BlogUrl
-                                          FROM Post p 
-                                               LEFT JOIN Author a on p.AuthorId = a.Id
+                                          FROM Post p                                                
                                                LEFT JOIN Blog b on p.BlogId = b.Id 
-                                         WHERE p.AuthorId = @authorId";
+                                         WHERE p.BlogId = @blogId";
                     cmd.Parameters.AddWithValue("@blogId", blogId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
