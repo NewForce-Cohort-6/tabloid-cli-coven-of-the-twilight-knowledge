@@ -180,7 +180,7 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 postToEdit.Title = title;
             }
-            Console.Write("New last name (blank to leave unchanged: ");
+            Console.Write("New url (blank to leave unchanged: ");
             string url = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(url))
             {
@@ -236,7 +236,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Remove()
         {
-            Post postToDelete = Choose("Which author would you like to remove?");
+            Post postToDelete = Choose("Which post would you like to remove?");
             if (postToDelete != null)
             {
                 _postRepository.Delete(postToDelete.Id);
