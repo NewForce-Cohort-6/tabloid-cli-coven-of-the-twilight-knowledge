@@ -87,6 +87,13 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Edit()
         {
+            Journal journalToEdit = Choose("Which journal would you like to edit?");
+            if (journalToEdit == null)
+            {
+                return;
+            }
+            Console.WriteLine();
+            Console.Write("New ")
         }
 
         private Journal Choose(string prompt = null)
@@ -103,7 +110,20 @@ namespace TabloidCLI.UserInterfaceManagers
             for (int i = 0; i < journals.Count; i++)
             {
                 Journal journal = journals[i];
-                Console.WriteLine($"");
+                Console.WriteLine($"{i + 1} {journal.Title}");
+            }
+            Console.Write(">: ");
+
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                return journals[choice - 1];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid Selection");
+                return null;
             }
         }
     }
