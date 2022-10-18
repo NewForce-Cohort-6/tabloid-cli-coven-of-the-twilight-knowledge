@@ -58,7 +58,7 @@ namespace TabloidCLI.Repositories
                                           FROM Blog b 
                                                LEFT JOIN BlogTag at on b.Id = at.BlogId
                                                LEFT JOIN Tag t on t.Id = at.TagId
-                                         WHERE b.id = @id";
+                                         WHERE b.Id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -123,7 +123,7 @@ namespace TabloidCLI.Repositories
                                            SET Title = @title,
                                                Url = @url
                                                
-                                         WHERE id = @id";
+                                         WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@title", blog.Title);
                     cmd.Parameters.AddWithValue("@url", blog.Url);
