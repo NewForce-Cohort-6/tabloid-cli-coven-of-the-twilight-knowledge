@@ -35,7 +35,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine(" 4) Remove Post");
             //added post details early
             Console.WriteLine(" 5) Post Details");
-            Console.WriteLine(" 6) Note Management");
+            //Console.WriteLine(" 6) Note Management");
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
@@ -62,9 +62,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     }
                     else
                     {
-                        //return new PostDetailManager(this, _connectionString, post.Id);
-                       throw new NotImplementedException();
-
+                        return new PostDetailManager(this, _connectionString, post.Id);
                     }
                 //case "6":
                 //    return new NoteManagementManager(this, _connectionString);
@@ -145,8 +143,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
             post.Author = author;
 
-            //dont have a blog repository yet
-
+            
             Console.WriteLine("Please Choose An Blog:");
             List<Blog> blogs = _blogRepository.GetAll();
 
