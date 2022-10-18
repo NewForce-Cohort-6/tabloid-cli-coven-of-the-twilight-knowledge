@@ -84,5 +84,27 @@ namespace TabloidCLI.UserInterfaceManagers
                 Console.WriteLine($"{journal.Id}) Title: {journal.Title}, Date Created: {journal.CreateDateTime}, Content: {journal.Content}");
             }
         }
+
+        private void Edit()
+        {
+        }
+
+        private Journal Choose(string prompt = null)
+        {
+            if (prompt == null)
+            {
+                prompt = "Please choose a journal entry";
+            }
+
+            Console.WriteLine(prompt);
+
+            List <Journal> journals = _journalRepository.GetAll();
+
+            for (int i = 0; i < journals.Count; i++)
+            {
+                Journal journal = journals[i];
+                Console.WriteLine($"");
+            }
+        }
     }
 }
