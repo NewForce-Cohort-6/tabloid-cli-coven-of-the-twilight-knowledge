@@ -11,12 +11,14 @@ namespace TabloidCLI.UserInterfaceManagers
         private readonly IUserInterfaceManager _parentUI;
         private TagRepository _tagRepository;
         private string _connectionString;
+        
 
         public TagManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
             _tagRepository = new TagRepository(connectionString);
             _connectionString = connectionString;
+            
         }
 
         public IUserInterfaceManager Execute()
@@ -87,7 +89,7 @@ namespace TabloidCLI.UserInterfaceManagers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Invalid Selection");
+                Console.WriteLine("Invalid Selection.");
                 return null;
             }
         }
@@ -126,7 +128,13 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Remove()
         {
-            throw new NotImplementedException();
+
+            Tag tagToDelete = Choose("Which tag would you like to remove? Select a TAG not in use.");
+            if (tagToDelete != null)
+            {
+                _tagRepository.Delete(tagToDelete.Id);
+            }
+                  
         }
     }
 }

@@ -178,7 +178,7 @@ namespace TabloidCLI
                 {
                     cmd.CommandText = @"SELECT p.id,
                                                p.Title As PostTitle,
-                                               p.URL AS PostUrl,
+                                               p.Url AS PostUrl,
                                                p.PublishDateTime,
                                                p.AuthorId,
                                                p.BlogId,
@@ -186,8 +186,9 @@ namespace TabloidCLI
                                                a.LastName,
                                                a.Bio,
                                                b.Title AS BlogTitle,
-                                               b.URL AS BlogUrl
-                                          FROM Post p                                                
+                                               b.Url AS BlogUrl
+                                          FROM Post p                                                                          
+                                               LEFT JOIN Author a on p.AuthorId = a.Id
                                                LEFT JOIN Blog b on p.BlogId = b.Id 
                                          WHERE p.BlogId = @blogId";
                     cmd.Parameters.AddWithValue("@blogId", blogId);
