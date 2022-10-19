@@ -43,11 +43,11 @@ namespace TabloidCLI.UserInterfaceManagers
                     Add();
                     return this;
                 case "3":
-                    Console.WriteLine("To be implented soon");
+                    Edit();
                     Console.WriteLine();
                     return this;
                 case "4":
-                    Console.WriteLine("To be implented soon");
+                    Remove();
                     Console.WriteLine();
                     return this;
                 case "0":
@@ -93,7 +93,20 @@ namespace TabloidCLI.UserInterfaceManagers
                 return;
             }
             Console.WriteLine();
-            Console.Write("New ");
+            Console.Write("New Title (blank to leave unchanged: ");
+            string title = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                journalToEdit.Title = title;
+            }
+            Console.Write("New Content (blank to leave unchanged: ");
+            string content = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(content))
+            {
+                journalToEdit.Content = content;
+            }
+
+            _journalRepository.Update(journalToEdit);
         }
 
         private Journal Choose(string prompt = null)
@@ -124,6 +137,15 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 Console.WriteLine("Invalid Selection");
                 return null;
+            }
+        }
+
+        private void Remove()
+        {
+            Journal journalToDelete = Choose("Which journal would you like to remove?");
+            if (journalToDelete != null)
+            {
+                _journalRepository.Delete(journalToDelete.Id);
             }
         }
     }
