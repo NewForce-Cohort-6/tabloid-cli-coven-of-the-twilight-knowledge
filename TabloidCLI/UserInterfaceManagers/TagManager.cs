@@ -87,7 +87,7 @@ namespace TabloidCLI.UserInterfaceManagers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Invalid Selection");
+                Console.WriteLine("Invalid Selection.");
                 return null;
             }
         }
@@ -131,6 +131,28 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 _tagRepository.Delete(tagToDelete.Id);
             }
+
+
+            //List<Tag> tags = _tagRepository.GetAll();
+
+            //for (int i = 0; i < tags.Count; i++)
+            //{
+            //    Tag tag = tags[i];
+            //    Console.WriteLine($" {i + 1}) {tag.Name}");
+            //}
+            //Console.Write("> ");
+            //string input = Console.ReadLine();
+
+            //try
+            //{
+            //    int choice = int.Parse(input);
+            //    return null;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Tag in use.  Select another Tag to remove.");
+               
+            //}
         }
     }
 }

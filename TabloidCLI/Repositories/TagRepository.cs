@@ -42,8 +42,60 @@ namespace TabloidCLI
 
         public Tag Get(int id)
         {
+            
 
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT b.Id AS BlogId,
+                                               
+                                               t.Id AS TagId,
+                                               t.Name,
+                                               a.Id AS AuthorId,
+                                               p.Id AS PostId
+
+                                          FROM Tag t 
+                                               LEFT JOIN BlogTag at on b.Id = at.BlogId
+                                               LEFT JOIN PostTag at on p.Id = at.PostId
+                                               Left JOIN AuthorTag at on a.Id = at.AuthorId
+                                         WHERE t.Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    Tag tag = null;
+
+                    //SqlDataReader reader = cmd.ExecuteReader();
+                    //while (reader.Read())
+                    //{
+                    //    if (tag == null)
+                    //    {
+                    //        tag = new Tag()
+                    //        {
+                    //            Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                    //            Name = reader.GetString(reader.GetOrdinal("Name")),
+
+
+                    //        };
+                    //    }
+
+                    //    if (!reader.IsDBNull(reader.GetOrdinal("BlogId")))
+                    //    {
+                    //        tag.Blogs.Add(new Blog()
+                    //        {
+                    //            Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
+                    //            Title = reader.GetString(reader.GetOrdinal("Title")),
+                    //            Url = reader.GetString(reader.GetOrdinal("Url")),
+                    //        });
+                    //    }
+                    //}
+
+                    //reader.Close();
+
+                    return tag;
+                }
+            }
         }
 
         public void Insert(Tag tag)
@@ -94,8 +146,8 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"DELETE FROM Tag 
-                                        WHERE Name = @name";
-                    cmd.Parameters.AddWithValue("@name", id);
+                                        WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
                 }
