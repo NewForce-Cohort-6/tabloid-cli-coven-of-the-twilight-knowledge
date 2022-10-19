@@ -11,12 +11,14 @@ namespace TabloidCLI.UserInterfaceManagers
         private readonly IUserInterfaceManager _parentUI;
         private TagRepository _tagRepository;
         private string _connectionString;
+        
 
         public TagManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
             _tagRepository = new TagRepository(connectionString);
             _connectionString = connectionString;
+            
         }
 
         public IUserInterfaceManager Execute()
@@ -126,33 +128,13 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Remove()
         {
-            Tag tagToDelete = Choose("Which tag would you like to remove?");
+
+            Tag tagToDelete = Choose("Which tag would you like to remove? Select a TAG not in use.");
             if (tagToDelete != null)
             {
                 _tagRepository.Delete(tagToDelete.Id);
             }
-
-
-            //List<Tag> tags = _tagRepository.GetAll();
-
-            //for (int i = 0; i < tags.Count; i++)
-            //{
-            //    Tag tag = tags[i];
-            //    Console.WriteLine($" {i + 1}) {tag.Name}");
-            //}
-            //Console.Write("> ");
-            //string input = Console.ReadLine();
-
-            //try
-            //{
-            //    int choice = int.Parse(input);
-            //    return null;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("Tag in use.  Select another Tag to remove.");
-               
-            //}
+                  
         }
     }
 }
